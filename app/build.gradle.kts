@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.sonarqube)
     id("kotlin-kapt")
 }
 
@@ -42,6 +43,13 @@ android {
     packaging {
         resources {
             excludes += "META-INF/gradle/incremental.annotation.processors"
+        }
+    }
+    sonar {
+        properties {
+            property("sonar.projectKey", "Safa-NAOUI_Rakuten_Search")
+            property("sonar.organization", "safa-naoui")
+            property("sonar.host.url", "https://sonarcloud.io")
         }
     }
 }
