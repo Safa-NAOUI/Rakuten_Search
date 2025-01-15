@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'    # You can adjust the version as needed
-          distribution: 'adoptopenjdk'  # Set the JDK distribution
+          distribution: 'temurin'  # Use Temurin (AdoptOpenJDK's successor)
 
       # Step 3: Create google-services.json from secret
       - name: Create google-services.json
