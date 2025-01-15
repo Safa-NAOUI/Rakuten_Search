@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "262782296343",
+    "project_id": "rakutensearch-11ede",
+    "storage_bucket": "rakutensearch-11ede.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262782296343:android:d7de0c983461c138375752",
+        "android_client_info": {
+          "package_name": "com.example.rakuten"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7dVdWs5Y4QxR7ktl4Hg9XCf7BmdG03HI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

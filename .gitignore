@@ -25,3 +25,20 @@ replay_pid*
 
 # Kotlin Gradle plugin data, see https://kotlinlang.org/docs/whatsnew20.html#new-directory-for-kotlin-data-in-gradle-projects
 .kotlin/
+
+# Ignore Gradle cache and lock files
+/caches/
+*.lock
+
+# Ignore Gradle cache and build files
+.gradle/
+build/
+
+# Ignore Android Studio files
+.idea/
+
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+
+*.profile
