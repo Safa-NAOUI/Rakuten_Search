@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt)
     alias(libs.plugins.sonarqube)
+    alias(libs.plugins.googleservices)
     id("kotlin-kapt")
 }
 
@@ -83,6 +84,10 @@ dependencies {
     implementation(libs.retrofit.converter.gson)
     implementation(libs.okhttp.logging.interceptor)
     implementation(libs.navigation.compose)
+
+    /** Firebase **/
+    implementation(libs.firebase.bom)
+    implementation(libs.firebase.analytics)
 
 
     testImplementation(libs.junit)
