@@ -3,8 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.sonarqube)
-    alias(libs.plugins.googleservices)
+    //#alias(libs.plugins.sonarqube)
     id("kotlin-kapt")
 }
 
@@ -21,48 +20,57 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField(
-            "String",
-            "API_URL_DEV",
-            "\"${project.findProperty("API_URL_DEV") ?: "https://default.dev.url"}\""
-        )
-        buildConfigField(
-            "String",
-            "API_URL_STAGING",
-            "\"${project.findProperty("API_URL_STAGING") ?: "https://default.staging.url"}\""
-        )
-        buildConfigField(
-            "String",
-            "API_URL_PROD",
-            "\"${project.findProperty("API_URL_PROD") ?: "https://default.prod.url"}\""
-        )
+//        buildConfigField(
+//            "String",
+//            "API_URL_DEV",
+//            "\"${project.findProperty("API_URL_DEV") ?: "https://default.dev.url"}\""
+//        )
+//        buildConfigField(
+//            "String",
+//            "API_URL_STAGING",
+//            "\"${project.findProperty("API_URL_STAGING") ?: "https://default.staging.url"}\""
+//        )
+//        buildConfigField(
+//            "String",
+//            "API_URL_PROD",
+//            "\"${project.findProperty("API_URL_PROD") ?: "https://default.prod.url"}\""
+//        )
     }
-    buildFeatures {
-        buildConfig = true
-        compose = true
-    }
+//    buildFeatures {
+//        buildConfig = true
+//        compose = true
+//    }
 
-    flavorDimensions+= "env"
-
-    productFlavors {
-        create("dev") {
-            dimension = "env"
-            versionName = "1.0.0-dev"
-            buildConfigField("String", "API_URL", "\"${project.findProperty("API_URL_DEV") ?: "https://default.dev.url"}\"")
-        }
-
-        create("staging") {
-            dimension = "env"
-            versionName = "1.0.0-staging"
-            buildConfigField("String", "API_URL", "\"${project.findProperty("API_URL_STAGING") ?: "https://default.staging.url"}\"")
-        }
-
-        create("prod") {
-            dimension = "env"
-            versionName = "1.0.0"
-            buildConfigField("String", "API_URL", "\"${project.findProperty("API_URL_PROD") ?: "https://default.prod.url"}\"")
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
+//    flavorDimensions+= "env"
+//
+//    productFlavors {
+//        create("dev") {
+//            dimension = "env"
+//            versionName = "1.0.0-dev"
+//            buildConfigField("String", "API_URL", "\"${project.findProperty("API_URL_DEV") ?: "https://default.dev.url"}\"")
+//        }
+//
+//        create("staging") {
+//            dimension = "env"
+//            versionName = "1.0.0-staging"
+//            buildConfigField("String", "API_URL", "\"${project.findProperty("API_URL_STAGING") ?: "https://default.staging.url"}\"")
+//        }
+//
+//        create("prod") {
+//            dimension = "env"
+//            versionName = "1.0.0"
+//            buildConfigField("String", "API_URL", "\"${project.findProperty("API_URL_PROD") ?: "https://default.prod.url"}\"")
+//        }
+//    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -81,13 +89,13 @@ android {
             excludes += "META-INF/gradle/incremental.annotation.processors"
         }
     }
-    sonar {
-        properties {
-            property("sonar.projectKey", "Safa-NAOUI_Rakuten_Search")
-            property("sonar.organization", "safa-naoui")
-            property("sonar.host.url", "https://sonarcloud.io")
-        }
-    }
+//    sonar {
+//        properties {
+//            property("sonar.projectKey", "Safa-NAOUI_Rakuten_Search")
+//            property("sonar.organization", "safa-naoui")
+//            property("sonar.host.url", "https://sonarcloud.io")
+//        }
+//    }
 }
 
 dependencies {
