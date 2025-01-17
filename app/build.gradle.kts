@@ -108,7 +108,6 @@ dependencies {
     /** jetPack compoise **/
     implementation(libs.compose.ui)
     implementation(libs.compose.material)
-    implementation(libs.compose.ui.tooling.preview)
 
     /** Hilt DI **/
     implementation(libs.hilt.android)
