@@ -101,10 +101,14 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.kotlin.stdlib)
+    implementation(libs.core.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
 
     /** jetPack compoise **/
+    implementation(libs.compose.ui)
     implementation(libs.compose.material)
+    implementation(libs.compose.ui.tooling.preview)
 
     /** Hilt DI **/
     implementation(libs.hilt.android)
