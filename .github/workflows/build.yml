@@ -3,38 +3,37 @@ name: Build Android Project with SonarQube & Crashlytics
 on:
   push:
     branches:
-      - main
+      - main  # Run the workflow on every push to the 'main' branch
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [ opened, synchronize, reopened ]  # Trigger the workflow for pull requests when opened, synchronized, or reopened
 
 jobs:
   build:
     name: Build, analyze and upload Crashlytics
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
 
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Important pour une analyse SonarQube complète
+          fetch-depth: 0  # Important to clone the repository with full commit history for a complete SonarQube analysis
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          java-version: '17'  # Set up Java 17
+          distribution: 'temurin'  # Use the Temurin distribution for Java
 
       - name: Create google-services.json
         run: |
-          echo "$GOOGLE_SERVICES_JSON" > app/google-services.json
+          echo "$GOOGLE_SERVICES_JSON" > app/google-services.json  # Create the google-services.json file required for Firebase
         env:
-          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}  # Retrieve the google-services.json content from secrets
 
       - name: Cache SonarQube packages
         uses: actions/cache@v4
         with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
+          path: ~/.sonar/cache  # Cache SonarQube files to speed up future builds
+          key: ${{ runner.os }}-sonar  # Use a unique key based on the OS
 
       - name: Cache Gradle packages
         uses: actions/cache@v4
@@ -42,20 +41,14 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-            ~/.m2/repository  # Si tu utilises des dépendances Maven
+            ~/.m2/repository  # Cache Maven dependencies if used
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', '**/settings.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle
-
+          restore-keys: ${{ runner.os }}-gradle  # Restore the Gradle cache if available for dependencies
 
       - name: Build and analyze with SonarQube
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew build sonarqube -Dsonar.projectKey=mon_projet_key -Dsonar.organization=mon_organisation -Dsonar.host.url=https://sonarcloud.io
-
-#      - name: Build and analyze with SonarQube
-#        env:
-#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-#        run: ./gradlew build sonar --info -Dsonar.projectKey=mon_projet_key -Dsonar.organization=mon_organisation -Dsonar.host.url=https://sonarcloud.io
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Use the SonarQube token for authentication
+        run: ./gradlew build sonarqube  # Build the project and run SonarQube analysis
 
       - name: Upload Crashlytics mapping file
-        run: ./gradlew uploadCrashlyticsMappingFileRelease
+        run: ./gradlew uploadCrashlyticsMappingFileRelease  # Upload the mapping file for Crashlytics
