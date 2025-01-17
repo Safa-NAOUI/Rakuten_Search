@@ -48,7 +48,7 @@ jobs:
       - name: Build and analyze with SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Use the SonarQube token for authentication
-        run: ./gradlew build sonarqube  # Build the project and run SonarQube analysis
+        run: ./gradlew build sonar --warning-mode all  # Build the project and run SonarQube analysis with detailed warnings
 
       - name: Upload Crashlytics mapping file
         run: ./gradlew uploadCrashlyticsMappingFileRelease  # Upload the mapping file for Crashlytics
