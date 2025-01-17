@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt)
-    //#alias(libs.plugins.sonarqube)
+    alias(libs.plugins.sonarqube)
     id("kotlin-kapt")
 }
 
@@ -52,7 +52,7 @@ android {
     }
 //    flavorDimensions+= "env"
 //
-//    productFlavors {
+//    productFlavors  {
 //        create("dev") {
 //            dimension = "env"
 //            versionName = "1.0.0-dev"
@@ -89,13 +89,13 @@ android {
             excludes += "META-INF/gradle/incremental.annotation.processors"
         }
     }
-//    sonar {
-//        properties {
-//            property("sonar.projectKey", "Safa-NAOUI_Rakuten_Search")
-//            property("sonar.organization", "safa-naoui")
-//            property("sonar.host.url", "https://sonarcloud.io")
-//        }
-//    }
+    sonar {
+        properties {
+            property("sonar.projectKey", "Safa-NAOUI_Rakuten_Search")
+            property("sonar.organization", "safa-naoui")
+            property("sonar.host.url", "https://sonarcloud.io")
+        }
+    }
 }
 
 dependencies {
