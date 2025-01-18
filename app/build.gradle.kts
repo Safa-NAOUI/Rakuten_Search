@@ -151,11 +151,19 @@ dependencies {
     androidTestImplementation(platform(libs.androidx.compose.bom))
 
     /** Dépendances pour Cucumber **/
-    androidTestImplementation (libs.cucumber.java)
-    androidTestImplementation (libs.cucumber.spring)
-    androidTestImplementation (libs.cucumber.junit)
+    androidTestImplementation(libs.cucumber.java)
+    androidTestImplementation(libs.cucumber.spring)
+    androidTestImplementation(libs.cucumber.junit)
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.core.testing)
+
 
 }
