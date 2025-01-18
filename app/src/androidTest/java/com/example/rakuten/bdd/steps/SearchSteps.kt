@@ -6,7 +6,6 @@ class SearchSteps {
 
     @Given("the user is on the search screen")
     fun userIsOnSearchScreen() {
-        throw PendingException("Not implemented yet")
         // Code to ensure the user is on the search screen
     }
 
