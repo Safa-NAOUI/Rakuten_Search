@@ -41,34 +41,37 @@ android {
         compose = true
     }
 
-//    buildTypes {
-//        release {
-//            isMinifyEnabled = false
-//            proguardFiles(
-//                getDefaultProguardFile("proguard-android-optimize.txt"),
-//                "proguard-rules.pro"
-//            )
-//        }
+    flavorDimensions += "env"
 
-    flavorDimensions+= "env"
-
-    productFlavors  {
+    productFlavors {
         create("dev") {
             dimension = "env"
             versionName = "1.0.0-dev"
-            buildConfigField("String", "API_URL", "\"${project.findProperty("API_URL_DEV") ?: "https://default.dev.url"}\"")
+            buildConfigField(
+                "String",
+                "API_URL",
+                "\"${project.findProperty("API_URL_DEV") ?: "https://default.dev.url"}\""
+            )
         }
 
         create("staging") {
             dimension = "env"
             versionName = "1.0.0-staging"
-            buildConfigField("String", "API_URL", "\"${project.findProperty("API_URL_STAGING") ?: "https://default.staging.url"}\"")
+            buildConfigField(
+                "String",
+                "API_URL",
+                "\"${project.findProperty("API_URL_STAGING") ?: "https://default.staging.url"}\""
+            )
         }
 
         create("prod") {
             dimension = "env"
             versionName = "1.0.0"
-            buildConfigField("String", "API_URL", "\"${project.findProperty("API_URL_PROD") ?: "https://default.prod.url"}\"")
+            buildConfigField(
+                "String",
+                "API_URL",
+                "\"${project.findProperty("API_URL_PROD") ?: "https://default.prod.url"}\""
+            )
         }
     }
 
@@ -146,6 +149,11 @@ dependencies {
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     androidTestImplementation(platform(libs.androidx.compose.bom))
+
+    /** Dépendances pour Cucumber **/
+    androidTestImplementation (libs.cucumber.java)
+    androidTestImplementation (libs.cucumber.spring)
+    androidTestImplementation (libs.cucumber.junit)
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
