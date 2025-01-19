@@ -1,4 +1,4 @@
-package com.example.rakuten.ui.theme
+package com.example.rakuten.app.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

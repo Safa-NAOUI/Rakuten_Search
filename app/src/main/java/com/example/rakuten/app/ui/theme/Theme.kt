@@ -1,4 +1,4 @@
-package com.example.rakuten.ui.theme
+package com.example.rakuten.app.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
