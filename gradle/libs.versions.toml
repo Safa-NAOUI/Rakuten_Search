@@ -4,6 +4,7 @@
 agp = "8.8.0"
 
 # Kotlin
+hiltNavigationCompose = "1.2.0"
 kotlin = "2.0.0"
 jetbrainsKotlinJvm = "1.9.0"
 
@@ -70,12 +71,19 @@ cucumber = "6.10.4"
 
 ## JavaPoet
 javapoet = "1.13.0"
+roomCompiler = "2.5.0"
+roomKtx = "2.5.0"
+roomRuntime = "2.5.0"
 
 [libraries]
 
 # Core AndroidX Dependencies
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+androidx-room-compiler-v250 = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
+androidx-room-ktx-v250 = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
+androidx-room-runtime-v250 = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 
 # UI & Material Components
