@@ -6,9 +6,11 @@ plugins {
     alias(libs.plugins.sonarqube)
     id("kotlin-kapt")
 }
-
+hilt {
+    enableAggregatingTask = false
+}
 android {
-    namespace = "com.example.akuten"
+    namespace = "com.example.rakuten"
     compileSdk = 35
 
     defaultConfig {
@@ -17,112 +19,56 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        buildConfigField(
-            "String",
-            "API_URL_DEV",
-            "\"${project.findProperty("API_URL_DEV") ?: "https://default.dev.url"}\""
-        )
-        buildConfigField(
-            "String",
-            "API_URL_STAGING",
-            "\"${project.findProperty("API_URL_STAGING") ?: "https://default.staging.url"}\""
-        )
-        buildConfigField(
-            "String",
-            "API_URL_PROD",
-            "\"${project.findProperty("API_URL_PROD") ?: "https://default.prod.url"}\""
-        )
     }
+
     buildFeatures {
         buildConfig = true
         compose = true
-    }
-
-    flavorDimensions += "env"
-
-    productFlavors {
-        create("dev") {
-            dimension = "env"
-            versionName = "1.0.0-dev"
-            buildConfigField(
-                "String",
-                "API_URL",
-                "\"${project.findProperty("API_URL_DEV") ?: "https://default.dev.url"}\""
-            )
-        }
-
-        create("staging") {
-            dimension = "env"
-            versionName = "1.0.0-staging"
-            buildConfigField(
-                "String",
-                "API_URL",
-                "\"${project.findProperty("API_URL_STAGING") ?: "https://default.staging.url"}\""
-            )
-        }
-
-        create("prod") {
-            dimension = "env"
-            versionName = "1.0.0"
-            buildConfigField(
-                "String",
-                "API_URL",
-                "\"${project.findProperty("API_URL_PROD") ?: "https://default.prod.url"}\""
-            )
-        }
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
         languageVersion = "1.9"
         apiVersion = "1.9"
     }
-    buildFeatures {
-        compose = true
-    }
+
     packaging {
-        resources {
-            excludes += "META-INF/gradle/incremental.annotation.processors"
-        }
-    }
-    sonar {
-        properties {
-            property("sonar.projectKey", "Safa-NAOUI_Rakuten_Search")
-            property("sonar.organization", "safa-naoui")
-            property("sonar.host.url", "https://sonarcloud.io")
-        }
+        resources.excludes.add("META-INF/gradle/incremental.annotation.processors")
     }
 }
 
+
 dependencies {
 
+    /** Project Modules **/
+    implementation(project(":domain"))
+    implementation(project(":data"))
+
+    /** Core AndroidX Libraries **/
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+
+    /** Jetpack Compose **/
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.lifecycle.viewmodel.ktx)
 
-    /** jetPack compoise **/
-    implementation(libs.compose.ui)
-    implementation(libs.compose.material)
+    /** Kotlin Standard Library **/
+    implementation(libs.kotlin.stdlib)
 
     /** Hilt DI **/
     implementation(libs.hilt.android)
-    implementation(libs.hilt.android.compiler)
+    kapt(libs.hilt.compiler) // Correctly use kapt for Hilt compiler
+    implementation(libs.androidx.hilt.navigation.compose)
 
     /** Retrofit & Gson **/
     implementation(libs.retrofit)
@@ -134,7 +80,7 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
 
-
+    /** Testing **/
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -142,28 +88,24 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    /** Additional dependencies **/
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-
-    /** Dépendances pour Cucumber **/
+    /** Cucumber Testing **/
     androidTestImplementation(libs.cucumber.java)
     androidTestImplementation(libs.cucumber.spring)
     androidTestImplementation(libs.cucumber.junit)
 
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
-
-
-
+    /** Other Dependencies **/
     testImplementation(libs.coroutines.test)
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.kotlin)
     testImplementation(libs.core.testing)
 
+    /** AndroidX Fragment **/
+    implementation(libs.fragment.ktx)
+    implementation(libs.javapoet) // Use 1.13.0 to avoid Hilt issues
 
+    /** Room **/
+    implementation(libs.androidx.room.runtime.v250)
+    kapt(libs.androidx.room.compiler.v250)
+    implementation(libs.androidx.room.ktx.v250)
+    
 }
