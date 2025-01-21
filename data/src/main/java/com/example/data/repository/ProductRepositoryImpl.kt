@@ -3,10 +3,10 @@ package com.example.data.repository
 
 import com.example.data.datasource.LocalDataSource
 import com.example.data.datasource.RemoteDataSource
-import com.example.domain.DataResult
 import com.example.domain.model.Product
 import com.example.domain.model.ProductDetail
 import com.example.domain.repository.ProductRepository
+import com.example.domain.utils.DataResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

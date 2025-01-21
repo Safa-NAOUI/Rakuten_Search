@@ -4,9 +4,9 @@ package com.example.domain.repository
  * Created by Safa NAOUI on 19,January,2025
  */
 
-import com.example.domain.DataResult
 import com.example.domain.model.Product
 import com.example.domain.model.ProductDetail
+import com.example.domain.utils.DataResult
 import kotlinx.coroutines.flow.Flow
 
 interface ProductRepository {

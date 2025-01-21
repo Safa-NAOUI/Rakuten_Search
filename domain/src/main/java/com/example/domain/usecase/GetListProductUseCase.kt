@@ -3,10 +3,10 @@ package com.example.domain.usecase
 /**
  * Created by Safa NAOUI on 20,January,2025
  */
-import com.example.domain.DataResult
 import com.example.domain.model.Product
 import kotlinx.coroutines.flow.Flow
 import com.example.domain.repository.ProductRepository
+import com.example.domain.utils.DataResult
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
