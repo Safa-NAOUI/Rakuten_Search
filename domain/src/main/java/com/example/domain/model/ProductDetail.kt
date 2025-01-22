@@ -5,17 +5,27 @@ package com.example.domain.model
  */
 
 data class ProductDetail(
-    val id: String,
-    val title: String,
+    val productId: Long,
+    val headline: String,
     val description: String,
-    val newPrice: String,
-    val usedPrice: String?,
-    val images: List<String>,
-    val rating: Float,
-    val reviewCount: Int,
-    val seller: Seller,
+    val salePrice: Double,
+    val newBestPrice: Double,
+    val usedBestPrice: Double?,
     val quality: String,
     val type: String,
     val sellerComment: String,
-    val categories: List<String>
+    val categories: List<String>,
+    val globalRating: GlobalRating,
+    val seller: Seller,
+    val images: List<ImageUrl>
+)
+
+data class GlobalRating(
+    val score: Double,
+    val nbReviews: Int
+)
+
+data class ImageUrl(
+    val size: String,
+    val url: String
 )
