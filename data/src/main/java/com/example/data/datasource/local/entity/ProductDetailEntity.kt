@@ -3,6 +3,7 @@ package com.example.data.datasource.local.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.example.data.utils.ConverteSeller
 import com.example.data.utils.Converters
 
 /**
@@ -10,7 +11,7 @@ import com.example.data.utils.Converters
  */
 
 @Entity(tableName = "product_details")
-@TypeConverters(Converters::class)
+@TypeConverters(Converters::class, ConverteSeller::class)
 data class ProductDetailEntity(
     @PrimaryKey val id: String,
     val title: String,
@@ -19,5 +20,10 @@ data class ProductDetailEntity(
     val usedPrice: String?,
     val images: List<String>,
     val rating: Float,
-    val reviewCount: Int
+    val reviewCount: Int,
+    val seller: SellerEntity,
+    val quality: String,
+    val type: String,
+    val sellerComment: String,
+    val categories: List<String>
 )
