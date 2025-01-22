@@ -20,7 +20,7 @@ interface ProductDao {
     @Query("SELECT * FROM products WHERE LOWER(headline) LIKE LOWER('%' || :keyword || '%')")
     fun getAllProducts(keyword: String): Flow<List<ProductEntity>>
 
-    @Query("SELECT * FROM product_details WHERE id = :id LIMIT 1")
+    @Query("SELECT * FROM product_details WHERE productId = :id LIMIT 1")
     fun getProductDetail(id: String): Flow<ProductDetailEntity>
 
 }

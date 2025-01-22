@@ -13,17 +13,13 @@ import com.example.data.utils.Converters
 @Entity(tableName = "product_details")
 @TypeConverters(Converters::class, ConverteSeller::class)
 data class ProductDetailEntity(
-    @PrimaryKey val id: String,
-    val title: String,
+    @PrimaryKey val productId: String,
+    val headline: String,
     val description: String,
-    val newPrice: String,
-    val usedPrice: String?,
-    val images: List<String>,
-    val rating: Float,
-    val reviewCount: Int,
-    val seller: SellerEntity,
-    val quality: String,
-    val type: String,
-    val sellerComment: String,
-    val categories: List<String>
+    val newBestPrice: String,
+    val usedBestPrice: String?,
+   val quality: String,
+   val type: String,
+   val sellerComment: String,
+   val categories: List<String>,
 )

@@ -11,35 +11,27 @@ import com.example.domain.model.ProductDetail
  */
 
 data class ProductDetailsResponse(
-    val id: String,
-    val title: String,
+    val productId: String,
+    val headline: String,
     val description: String,
-    val newPrice: String,
-    val usedPrice: String?,
-    val images: List<String>,
-    val rating: Float,
-    val reviewCount: Int,
-    val seller: SellerResponse,
+    val newBestPrice: String,
+    val usedBestPrice: String?,
     val quality: String,
     val type: String,
     val sellerComment: String,
-    val categories: List<String>
+    val categories: List<String>,
 ) {
     fun toDomain(): ProductDetail {
         return ProductDetail(
-            id = id,
-            title = title,
+            productId = productId,
+            headline = headline,
             description = description,
-            newPrice = newPrice,
-            usedPrice = usedPrice,
-            images = images,
-            rating = rating,
-            reviewCount = reviewCount,
-            seller = seller.toDomain(),
-            quality = quality,
-            type = type,
-            sellerComment = sellerComment,
-            categories = categories
+            newBestPrice = newBestPrice,
+            usedBestPrice = usedBestPrice,
+            quality=quality,
+            type= type,
+            sellerComment=sellerComment,
+            categories= categories
         )
     }
 }

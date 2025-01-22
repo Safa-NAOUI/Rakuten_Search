@@ -4,6 +4,8 @@ import com.example.data.datasource.local.entity.ProductDetailEntity
 import com.example.data.datasource.local.entity.ProductEntity
 import com.example.domain.model.Product
 import com.example.domain.model.ProductDetail
+import com.example.domain.model.Seller
+import com.example.data.datasource.local.entity.SellerEntity
 
 /** Mapper `ProductEntity` -> `Product`**/
 fun ProductEntity.toDomain(): Product {
@@ -35,27 +37,46 @@ fun Product.toEntity(): ProductEntity {
 /** Mapper `ProductDetailEntity` -> `ProductDetail` **/
 fun ProductDetailEntity.toDomain(): ProductDetail {
     return ProductDetail(
-        id = id,
-        title = title,
+        productId = productId,
+        headline = headline,
         description = description,
-        newPrice = newPrice,
-        usedPrice = usedPrice,
-        images = images,
-        rating = rating,
-        reviewCount = reviewCount
+        newBestPrice = newBestPrice,
+        usedBestPrice = usedBestPrice,
+        quality=quality,
+        type= type,
+        sellerComment=sellerComment,
+        categories= categories,
     )
 }
 
 /** Mapper `ProductDetail` -> `ProductDetailEntity` **/
 fun ProductDetail.toEntity(): ProductDetailEntity {
     return ProductDetailEntity(
-        id = id,
-        title = title,
+        productId = productId,
+        headline = headline,
         description = description,
-        newPrice = newPrice,
-        usedPrice = usedPrice,
-        images = images,
-        rating = rating,
-        reviewCount = reviewCount
+        newBestPrice = newBestPrice,
+        usedBestPrice = usedBestPrice,
+        quality=quality,
+        type= type,
+        sellerComment=sellerComment,
+        categories= categories,
+    )
+}
+
+
+/** Mapper `SellerEntity` -> `Seller` **/
+fun SellerEntity.toDomain(): Seller {
+    return Seller(
+        id = id,
+        login = login
+    )
+}
+
+/** Mapper `Seller` -> `SellerEntity` **/
+fun Seller.toEntity(): SellerEntity {
+    return SellerEntity(
+        id = id,
+        login = login
     )
 }
