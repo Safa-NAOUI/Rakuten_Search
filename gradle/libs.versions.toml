@@ -116,7 +116,6 @@ firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics
 
 ## Cucumber
 cucumber-java = { module = "io.cucumber:cucumber-java", version.ref = "cucumber" }
-cucumber-spring = { module = "io.cucumber:cucumber-spring", version.ref = "cucumber" }
 cucumber-junit = { module = "io.cucumber:cucumber-junit", version.ref = "cucumber" }
 
 ## Room
@@ -127,6 +126,7 @@ room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 ## Coroutines
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+coroutines-kotlinx = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 
 ## Retrofit
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
