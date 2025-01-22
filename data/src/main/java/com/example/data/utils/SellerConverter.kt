@@ -4,7 +4,7 @@ import androidx.room.TypeConverter
 import com.example.data.datasource.local.entity.SellerEntity
 
 
-class ConverteSeller {
+class SellerConverter {
 
     @TypeConverter
     fun fromSellerEntity(seller: SellerEntity): String {

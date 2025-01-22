@@ -5,8 +5,11 @@ import com.example.data.datasource.local.entity.ProductEntity
 import com.example.domain.model.Product
 import com.example.domain.model.ProductDetail
 import com.example.domain.model.Seller
+import com.example.domain.model.GlobalRating
+import com.example.domain.model.ImageUrl
 import com.example.data.datasource.local.entity.SellerEntity
-
+import com.example.data.datasource.local.entity.GlobalRatingEntity
+import com.example.data.datasource.local.entity.ImageUrlEntity
 /** Mapper `ProductEntity` -> `Product`**/
 fun ProductEntity.toDomain(): Product {
     return Product(
@@ -46,6 +49,10 @@ fun ProductDetailEntity.toDomain(): ProductDetail {
         type= type,
         sellerComment=sellerComment,
         categories= categories,
+        salePrice = salePrice,
+        globalRating = globalRating.toDomain(),
+        seller = seller.toDomain(),
+        images = images.mapNotNull { it.toDomain() }?: emptyList()
     )
 }
 
@@ -61,6 +68,11 @@ fun ProductDetail.toEntity(): ProductDetailEntity {
         type= type,
         sellerComment=sellerComment,
         categories= categories,
+        salePrice = salePrice,
+        globalRating = globalRating.toEntity(),
+        seller = seller.toEntity(),
+        images = images.mapNotNull { it.toEntity() }
+
     )
 }
 
@@ -78,5 +90,40 @@ fun Seller.toEntity(): SellerEntity {
     return SellerEntity(
         id = id,
         login = login
+    )
+}
+
+
+/** Mapper `globalRatingEntity` -> `Seller` **/
+fun GlobalRatingEntity.toDomain(): GlobalRating {
+    return GlobalRating(
+        score  = score,
+    nbReviews = nbReviews
+    )
+}
+
+/** Mapper `globalRating` -> `globalRatingEntity` **/
+fun GlobalRating.toEntity(): GlobalRatingEntity {
+    return GlobalRatingEntity(
+        score  = score,
+        nbReviews = nbReviews
+    )
+}
+
+
+/** Mapper `globalRatingEntity` -> `Seller` **/
+fun ImageUrlEntity.toDomain(): ImageUrl {
+    println("ImageUrlEntity size: $size, url: $url") // Log values to check if they are null
+    return ImageUrl(
+        size  = size?: "UNKNOWN_SIZE",
+        url = url?: "UNKNOWN_URL"
+    )
+}
+
+/** Mapper `globalRating` -> `globalRatingEntity` **/
+fun ImageUrl.toEntity(): ImageUrlEntity {
+    return ImageUrlEntity(
+        url  = url,
+        size = size
     )
 }

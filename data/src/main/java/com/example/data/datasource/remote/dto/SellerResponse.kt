@@ -2,13 +2,13 @@ package com.example.data.datasource.remote.dto
 
 import com.example.domain.model.Seller
 
-class SellerResponse(
-    val id: Long,
+data class SellerResponse(
+    val id: String,
     val login: String
 ) {
     fun toDomain(): Seller {
         return Seller(
-            id = id,
+            id = id.toLong(),
             login = login
         )
     }
