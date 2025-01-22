@@ -10,7 +10,6 @@ import com.example.data.datasource.local.entity.ProductEntity
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.data.datasource.local.dao.ProductDetailDao
 import com.example.data.utils.Converters
 
 /**
@@ -29,5 +28,4 @@ import com.example.data.utils.Converters
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
-    abstract fun productDetailDao(): ProductDetailDao
 }

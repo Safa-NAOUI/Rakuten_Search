@@ -1,7 +1,6 @@
 package com.example.data.datasource
 
 import com.example.domain.model.Product
-import com.example.domain.model.ProductDetail
 
 /**
  * RemoteDataSource is an interface that defines methods for fetching product data
@@ -11,5 +10,4 @@ import com.example.domain.model.ProductDetail
 
 interface RemoteDataSource {
     suspend fun searchProducts(keyword: String): List<Product>
-    suspend fun getProductDetails(id: String): ProductDetail
 }

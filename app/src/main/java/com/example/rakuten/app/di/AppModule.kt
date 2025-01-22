@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import com.example.data.datasource.local.LocalProductDataSource
 import com.example.data.datasource.local.dao.ProductDao
-import com.example.data.datasource.local.dao.ProductDetailDao
 import com.example.data.datasource.local.database.AppDatabase
 import com.example.data.datasource.remote.ProductApi
 import com.example.data.datasource.remote.RemoteProductDataSource
@@ -48,12 +47,6 @@ object AppModule {
     @Singleton
     fun provideProductDao(database: AppDatabase): ProductDao {
         return database.productDao()
-    }
-
-    @Provides
-    @Singleton
-    fun provideProductDetailDao(database: AppDatabase): ProductDetailDao {
-        return database.productDetailDao()
     }
 
     @Provides
