@@ -27,6 +27,40 @@ android {
         compose = true
     }
 
+    flavorDimensions += "env"
+
+    productFlavors {
+        create("dev") {
+            dimension = "env"
+            versionName = "1.0.0-dev"
+            buildConfigField(
+                "String",
+                "API_URL",
+                "\"${project.findProperty("API_URL_${name.uppercase()}") ?: "https://default.dev.url"}\""
+            )
+        }
+
+        create("staging") {
+            dimension = "env"
+            versionName = "1.0.0-staging"
+            buildConfigField(
+                "String",
+                "API_URL",
+                "\"${project.findProperty("API_URL_${name.uppercase()}") ?: "https://default.staging.url"}\""
+            )
+        }
+
+        create("prod") {
+            dimension = "env"
+            versionName = "1.0.0"
+            buildConfigField(
+                "String",
+                "API_URL",
+                "\"${project.findProperty("API_URL_${name.uppercase()}") ?: "https://default.prod.url"}\""
+            )
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -90,8 +124,11 @@ dependencies {
 
     /** Cucumber Testing **/
     androidTestImplementation(libs.cucumber.java)
-    androidTestImplementation(libs.cucumber.spring)
     androidTestImplementation(libs.cucumber.junit)
+
+    /** coroutine **/
+    implementation(libs.coroutines.kotlinx)
+    implementation(libs.kotlinx.coroutines.core)
 
     /** Other Dependencies **/
     testImplementation(libs.coroutines.test)
