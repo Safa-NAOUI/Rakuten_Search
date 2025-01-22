@@ -18,6 +18,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 import com.example.rakuten.BuildConfig
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -26,8 +28,17 @@ object AppModule {
     @Provides
     @Singleton
     fun provideProductApi(): ProductApi {
+        val logging = HttpLoggingInterceptor().apply {
+            level =
+                HttpLoggingInterceptor.Level.BODY // Affiche le corps de la requête et de la réponse
+        }
+        val okHttpClient = OkHttpClient.Builder()
+            .addInterceptor(logging)
+            .build()
+
         return Retrofit.Builder()
             .baseUrl(BuildConfig.API_URL)
+            // .client(okHttpClient) // for logging
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ProductApi::class.java)
