@@ -11,7 +11,6 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.data.datasource.local.dao.ProductDetailDao
-import com.example.data.datasource.local.entity.ProductDetailEntity
 import com.example.data.utils.Converters
 
 /**
@@ -23,8 +22,8 @@ import com.example.data.utils.Converters
  */
 
 @Database(
-    entities = [ProductEntity::class, ProductDetailEntity::class],
-    version = 1,
+    entities = [ProductEntity::class],
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
