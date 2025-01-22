@@ -40,7 +40,8 @@ object AppModule {
             context,
             AppDatabase::class.java,
             "product_db"
-        ).build()
+        ).fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides
