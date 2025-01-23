@@ -33,32 +33,39 @@ fun ImageCarouselWithIndicator(images: List<ImageUrl>) {
     )
 
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 16.dp), // Added padding to avoid overlap
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        HorizontalPager(
-            state = pagerState,
+        // Box to wrap the pager and ensure height constraints
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(300.dp)
-        ) { page ->
-            Image(
-                painter = rememberAsyncImagePainter(
-                    ImageRequest.Builder(LocalContext.current)
-                        .data(data = originalImages[page].url)
-                        .apply {
-                            placeholder(R.drawable.no_image)
-                            error(R.drawable.no_image)
-                        }
-                        .build()
-                ),
-                contentDescription = "Product Image",
-                contentScale = ContentScale.Fit,
+        ) {
+            HorizontalPager(
+                state = pagerState,
                 modifier = Modifier.fillMaxSize()
-            )
+            ) { page ->
+                Image(
+                    painter = rememberAsyncImagePainter(
+                        ImageRequest.Builder(LocalContext.current)
+                            .data(data = originalImages[page].url)
+                            .apply {
+                                placeholder(R.drawable.no_image)
+                                error(R.drawable.no_image)
+                            }
+                            .build()
+                    ),
+                    contentDescription = "Product Image",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(20.dp)) // Ensure enough spacing between pager and indicator
 
         // Dots Indicator
         DotsIndicator(
@@ -70,6 +77,6 @@ fun ImageCarouselWithIndicator(images: List<ImageUrl>) {
             unselectedSize = 16,
             spacing = 4
         )
-
     }
+
 }
