@@ -141,6 +141,7 @@ dependencies {
     testImplementation(libs.mockito.kotlin)
     testImplementation(libs.coroutines.test)
     testImplementation(libs.turbine)
+    testImplementation(libs.robolectric)
 
     /** AndroidX Fragment **/
     implementation(libs.fragment.ktx)
