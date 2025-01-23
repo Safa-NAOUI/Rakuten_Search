@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -28,6 +29,7 @@ import com.example.domain.model.Seller
 import com.example.rakuten.app.ui.components.CustomTopAppBar
 import com.example.rakuten.app.ui.components.DisplayCustomHtml
 import com.example.rakuten.app.ui.components.ImageCarouselWithIndicator
+import com.example.rakuten.app.ui.components.StarRating
 import com.example.rakuten.app.ui.theme.customRed
 import com.example.rakuten.app.util.StringConstants
 import com.example.rakuten.app.util.StringConstants.SELLER_REVIEW
@@ -44,11 +46,11 @@ fun ItemProductDetail(
             .verticalScroll(rememberScrollState())
     ) {
         // Top App Bar
+
         CustomTopAppBar(
             title = "",
             onBackClick = onBackClick
         )
-
         // Carousel for images
         Box(
             modifier = Modifier
@@ -76,7 +78,22 @@ fun ItemProductDetail(
             )
             Spacer(modifier = Modifier.height(8.dp))
 
-
+            Row(
+                modifier = Modifier.fillMaxSize(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                // StarRating inside the column
+                StarRating(rating = product.globalRating.score.toFloat(), starSize = 20.dp)
+                product.globalRating.nbReviews.let {
+                    Text(
+                        text = "${it} ${StringConstants.REVIEW}",
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 15.sp,
+                        color = customRed,
+                    )
+                }
+            }
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -92,8 +109,6 @@ fun ItemProductDetail(
                         color = customRed,
                     )
                 }
-
-
                 product.usedBestPrice?.let {
                     Text(
                         text = "${StringConstants.USED} ${it}€", fontWeight = FontWeight.Normal,
@@ -132,7 +147,6 @@ fun ItemProductDetail(
                     style = MaterialTheme.typography.bodyMedium
                 )
 
-
                 Text(
                     text = " \" " + product.sellerComment + " \" - " + product.seller.login,
                     fontWeight = FontWeight.Normal,
@@ -149,7 +163,6 @@ fun ItemProductDetail(
 
 
 // Mock Product for Preview
-
 fun getMockProduct(): ProductDetail {
     return ProductDetail(
         headline = "Samsung Galaxy S21",

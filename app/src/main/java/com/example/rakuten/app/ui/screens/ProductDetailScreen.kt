@@ -11,16 +11,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.domain.utils.DataResult
-import com.example.rakuten.app.ui.components.ProductDetailContent
 import com.example.rakuten.app.viewmodel.ProductViewModel
 
 @Composable
 fun DetailScreen(
     productId: String,
-    viewModel: ProductViewModel = hiltViewModel()
-) {
+    navController: NavController,
+    viewModel: ProductViewModel = hiltViewModel()){
     val productState by viewModel.selectedProduct.collectAsState()
+
 
     LaunchedEffect(productId) {
         viewModel.getProductDetail(productId)
@@ -33,7 +34,9 @@ fun DetailScreen(
             }
 
             is DataResult.Success -> {
-                ProductDetailContent(result.data)
+                ItemProductDetail(
+                    product = result.data,
+                    onBackClick = {  navController.popBackStack() })
             }
 
             is DataResult.Error -> {

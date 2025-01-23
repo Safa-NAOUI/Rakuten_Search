@@ -2,6 +2,7 @@
 package com.example.rakuten.app.util
 
 object StringConstants {
+    const val REVIEW= " avis"
     const val NEW = "Neuf  dès "
     const val USED = "Occasion  dès "
     const val SELLER_REVIEW = "Avis vendeur"
