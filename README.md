@@ -37,13 +37,11 @@ An Android application that allows users to browse and interact with a list of p
 
 ### Screenshots 
 
+<p align="center">
 <img src="apk/screenshots/detail_product_screenshot.jpg" width="400">
 <img src="apk/screenshots/search_product_screenshot.jpg" width="400">
 <img src="apk/screenshots/splash_screen_screenshot.jpg" width="400">
-
-![Capture d'écran](project/app/apk/screenshot/search_product_screenshot.jpg)
-![Capture d'écran](Screenshot_20250124_002002_Rakuten search.jpg)
-![Capture d'écran](project/app/apk/screenshot/Screenshot_20250124_001944_Rakuten search.jpg)
+</p>
 
 ## 🚀 Installation  
 
