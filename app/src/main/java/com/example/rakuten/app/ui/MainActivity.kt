@@ -1,4 +1,4 @@
-package com.example.rakuten.app.ui.screens
+package com.example.rakuten.app.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
