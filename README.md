@@ -35,13 +35,6 @@ An Android application that allows users to browse and interact with a list of p
 ### 🧭 Navigation  
 - 🔗 **Navigation Component** – Intuitive and structured app navigation.  
 
-## 🚀 Installation  
-
-### 1️⃣ Clone the repository  
-```sh
-git clone <repository-url>
-cd e-commerce-app
-
 ### Screenshots 
 
 <img src="apk/screenshots/detail_product_screenshot.jpg" width="400">
@@ -51,3 +44,11 @@ cd e-commerce-app
 ![Capture d'écran](project/app/apk/screenshot/search_product_screenshot.jpg)
 ![Capture d'écran](Screenshot_20250124_002002_Rakuten search.jpg)
 ![Capture d'écran](project/app/apk/screenshot/Screenshot_20250124_001944_Rakuten search.jpg)
+
+## 🚀 Installation  
+
+### 1️⃣ Clone the repository  
+```sh
+git clone <repository-url>
+cd e-commerce-app
+
