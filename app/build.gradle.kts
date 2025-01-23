@@ -19,7 +19,8 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner ="com.google.dagger.hilt.android.testing.HiltTestRunner"
+
     }
 
     buildFeatures {
@@ -75,11 +76,15 @@ android {
     packaging {
         resources.excludes.add("META-INF/gradle/incremental.annotation.processors")
     }
+    android {
+        composeOptions {
+            kotlinCompilerExtensionVersion = "1.5.3" // La version doit correspondre à celle de Compose
+        }
+    }
+
 }
 
-
 dependencies {
-
     /** Project Modules **/
     implementation(project(":domain"))
     implementation(project(":data"))
@@ -101,7 +106,7 @@ dependencies {
 
     /** Hilt DI **/
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler) // Correctly use kapt for Hilt compiler
+    kapt(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
     /** Retrofit & Gson **/
@@ -126,23 +131,41 @@ dependencies {
     androidTestImplementation(libs.cucumber.java)
     androidTestImplementation(libs.cucumber.junit)
 
-    /** coroutine **/
+    /** Coroutine **/
     implementation(libs.coroutines.kotlinx)
     implementation(libs.kotlinx.coroutines.core)
 
     /** Other Dependencies **/
-    testImplementation(libs.coroutines.test)
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.kotlin)
-    testImplementation(libs.core.testing)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.turbine)
 
     /** AndroidX Fragment **/
     implementation(libs.fragment.ktx)
-    implementation(libs.javapoet) // Use 1.13.0 to avoid Hilt issues
+    implementation(libs.javapoet)
 
     /** Room **/
     implementation(libs.androidx.room.runtime.v250)
     kapt(libs.androidx.room.compiler.v250)
     implementation(libs.androidx.room.ktx.v250)
-    
+
+    /** Coil **/
+    implementation(libs.coil.compose)
+
+    /** Accompanist **/
+    implementation(libs.accompanist.flowlayout)
+
+    /** AndroidX Test & Hilt Testing **/
+    androidTestImplementation(libs.hilt.android.testing)
+    kaptAndroidTest(libs.hilt.compiler.v2x)
+
+    // JUnit & AndroidX test rules
+    androidTestImplementation(libs.androidx.rules.v150)
+
+    // Cucumber dependencies for AndroidTest
+    androidTestImplementation(libs.cucumber.android)
+    androidTestImplementation(libs.cucumber.spring)
 }
+
+

@@ -1,9 +1,18 @@
 [versions]
 
 # Android Gradle Plugin (AGP)
+accompanistFlowlayout = "0.30.1"
 agp = "8.8.0"
 
 # Kotlin
+androidxJunit = "1.x"
+coilCompose = "2.5.0"
+coreTestingVersion = "2.2.0"
+gson = "2.10.1"
+hiltAndroid = "2.50"
+hiltAndroidTesting = "2.x"
+hiltAndroidTestingVersion = "2.38.1"
+hiltCompiler = "2.x"
 hiltNavigationCompose = "1.2.0"
 kotlin = "2.0.0"
 jetbrainsKotlinJvm = "1.9.0"
@@ -22,6 +31,9 @@ composeBom = "2025.01.00"
 compose = "1.2.1"
 
 ## Navigation
+mockitoCore = "5.6.0"
+mockitoInline = "5.2.0"
+mockitoKotlinVersion = "5.1.0"
 navigation = "2.7.6"
 
 ## Lifecycle & ViewModel
@@ -74,22 +86,39 @@ javapoet = "1.13.0"
 roomCompiler = "2.5.0"
 roomKtx = "2.5.0"
 roomRuntime = "2.5.0"
+rules = "1.5.0"
+rulesVersion = "1.x"
+turbine = "1.0.0"
 
 [libraries]
 
 # Core AndroidX Dependencies
+accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanistFlowlayout" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-core-testing-v220 = { module = "androidx.arch.core:core-testing", version.ref = "coreTestingVersion" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-room-compiler-v250 = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-room-ktx-v250 = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
 androidx-room-runtime-v250 = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+androidx-rules-v150 = { module = "androidx.test:rules", version.ref = "rules" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
+cucumber-android = { module = "io.cucumber:cucumber-android", version.ref = "cucumber" }
+cucumber-spring = { module = "io.cucumber:cucumber-spring", version.ref = "cucumber" }
 fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 
 # UI & Material Components
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroidTesting" }
+hilt-android-testing-v2381 = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroidTestingVersion" }
+hilt-android-v250 = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-compiler-v2x = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 # Navigation
+mockito-core-v560 = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
+mockito-kotlin-v510 = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlinVersion" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 
 # Networking
@@ -152,6 +181,8 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 
 # Kotlin Standard Library
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 
 
 [plugins]
