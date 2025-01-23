@@ -10,8 +10,6 @@ coilCompose = "2.5.0"
 coreTestingVersion = "2.2.0"
 gson = "2.10.1"
 hiltAndroid = "2.50"
-hiltAndroidTesting = "2.x"
-hiltAndroidTestingVersion = "2.38.1"
 hiltCompiler = "2.x"
 hiltNavigationCompose = "1.2.0"
 kotlin = "2.0.0"
@@ -89,6 +87,7 @@ roomRuntime = "2.5.0"
 rules = "1.5.0"
 rulesVersion = "1.x"
 turbine = "1.0.0"
+uiTestJunit4Android = "1.7.6"
 
 [libraries]
 
@@ -109,10 +108,7 @@ fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragm
 
 # UI & Material Components
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroidTesting" }
-hilt-android-testing-v2381 = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroidTestingVersion" }
-hilt-android-v250 = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
-hilt-compiler-v2x = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }
+ hilt-compiler-v2x = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 # Navigation
@@ -183,6 +179,7 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+androidx-ui-test-junit4-android = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "uiTestJunit4Android" }
 
 
 [plugins]

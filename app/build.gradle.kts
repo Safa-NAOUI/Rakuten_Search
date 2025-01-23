@@ -106,6 +106,7 @@ dependencies {
 
     /** Hilt DI **/
     implementation(libs.hilt.android)
+    implementation(libs.androidx.ui.test.junit4.android)
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
@@ -157,7 +158,6 @@ dependencies {
     implementation(libs.accompanist.flowlayout)
 
     /** AndroidX Test & Hilt Testing **/
-    androidTestImplementation(libs.hilt.android.testing)
     kaptAndroidTest(libs.hilt.compiler.v2x)
 
     // JUnit & AndroidX test rules
