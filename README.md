@@ -38,9 +38,9 @@ An Android application that allows users to browse and interact with a list of p
 ### Screenshots 
 
 <p align="center">
-<img src="apk/screenshots/detail_product_screenshot.jpg" width="400">
-<img src="apk/screenshots/search_product_screenshot.jpg" width="400">
-<img src="apk/screenshots/splash_screen_screenshot.jpg" width="400">
+<img src="apk/screenshots/detail_product_screenshot.jpg" width="300">
+<img src="apk/screenshots/search_product_screenshot.jpg" width="300">
+<img src="apk/screenshots/splash_screen_screenshot.jpg" width="300">
 </p>
 
 ## 🚀 Installation  
