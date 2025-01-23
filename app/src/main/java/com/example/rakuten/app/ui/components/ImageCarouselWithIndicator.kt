@@ -35,14 +35,14 @@ fun ImageCarouselWithIndicator(images: List<ImageUrl>) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(bottom = 16.dp), // Added padding to avoid overlap
+            .padding(bottom = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Box to wrap the pager and ensure height constraints
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(300.dp)
+                .height(350.dp)
+                .weight(1f) // Ensure proportional spacing
         ) {
             HorizontalPager(
                 state = pagerState,
@@ -65,7 +65,7 @@ fun ImageCarouselWithIndicator(images: List<ImageUrl>) {
             }
         }
 
-        Spacer(modifier = Modifier.height(20.dp)) // Ensure enough spacing between pager and indicator
+        Spacer(modifier = Modifier.height(20.dp))
 
         // Dots Indicator
         DotsIndicator(
@@ -75,8 +75,8 @@ fun ImageCarouselWithIndicator(images: List<ImageUrl>) {
             unselectedColor = Color.Gray,
             selectedSize = 18,
             unselectedSize = 16,
-            spacing = 4
+            spacing = 4,
+            modifier = Modifier.padding(top = 10.dp)
         )
     }
-
 }
