@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.example.domain.model.Product
 import coil.compose.AsyncImage
 import com.example.rakuten.app.ui.theme.customRed
+import com.example.rakuten.app.util.StringConstants
 
 @Composable
 fun ProductDetailView(product: Product, onClick: () -> Unit, modifier: Modifier = Modifier) {
@@ -74,7 +75,7 @@ fun ProductDetailView(product: Product, onClick: () -> Unit, modifier: Modifier 
             ) {
                 product.newBestPrice?.let {
                     Text(
-                        text = "${it}€ Neuf",
+                        text = StringConstants.NEW + " ${it}€",
                         fontWeight = FontWeight.Bold,
                         fontSize = 14.sp,
                         color = customRed,
@@ -82,7 +83,7 @@ fun ProductDetailView(product: Product, onClick: () -> Unit, modifier: Modifier 
                 }
                 product.usedBestPrice?.let {
                     Text(
-                        text = "${it}€ Occasion",
+                        text = "${StringConstants.USED} ${it}€",
                         fontWeight = FontWeight.Normal,
                         fontSize = 12.sp,
                         color = Color.Gray,
