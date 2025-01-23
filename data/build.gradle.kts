@@ -36,33 +36,21 @@ android {
 dependencies {
     implementation(project(":domain"))
 
-    // Retrofit & Room pour gérer les données
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("androidx.room:room-runtime:2.5.0")
-    kapt("androidx.room:room-compiler:2.5.0")
+    implementation(libs.retrofit)
 
-    // ✅ Ajoute ceci pour utiliser `Flow` avec Room
-    implementation("androidx.room:room-ktx:2.5.0")
+    /** Room **/
+    implementation(libs.androidx.room.runtime.v250)
+    kapt(libs.androidx.room.compiler.v250)
+    implementation(libs.androidx.room.ktx.v250)
+    implementation(libs.retrofit.converter.gson)
 
-    // Hilt pour injecter les dépendances
-    implementation("com.google.dagger:hilt-android:2.50")
-    kapt("com.google.dagger:hilt-compiler:2.50")
+    /** Hilt DI **/
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-
-    /** Hilt DI **/
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler) // Correctly use kapt for Hilt compiler
-
-    implementation("com.google.code.gson:gson:2.10.1")
-
-
-
-
 }

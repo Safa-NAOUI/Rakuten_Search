@@ -123,7 +123,6 @@ dependencies {
     /** Testing **/
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
@@ -166,7 +165,10 @@ dependencies {
 
     // Cucumber dependencies for AndroidTest
     androidTestImplementation(libs.cucumber.android)
-    androidTestImplementation(libs.cucumber.spring)
+    androidTestImplementation(libs.cucumber.android)
+
+    androidTestImplementation(libs.mockito.core)
+    androidTestImplementation(libs.mockito.kotlin)
 }
 
 
