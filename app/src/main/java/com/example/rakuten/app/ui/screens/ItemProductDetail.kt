@@ -129,6 +129,15 @@ fun ItemProductDetail(
             }
             Spacer(modifier = Modifier.height(8.dp))
 
+            Text(
+                text = StringConstants.DESCRIPTION,
+                fontWeight = FontWeight.Bold,
+                fontSize = 16.sp,
+                style = MaterialTheme.typography.bodyMedium
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
             DisplayCustomHtml(product.description)
 
             Spacer(modifier = Modifier.height(8.dp))

@@ -15,9 +15,9 @@ import androidx.compose.ui.text.TextStyle
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomTopAppBar(
+    modifier: Modifier = Modifier,
     title: String = "",
     onBackClick: () -> Unit,
-    modifier: Modifier = Modifier,
     titleStyle: TextStyle = MaterialTheme.typography.titleLarge,
     navigationIcon: @Composable (() -> Unit)? = {
         IconButton(onClick = onBackClick) {
