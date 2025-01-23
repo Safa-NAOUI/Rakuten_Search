@@ -33,7 +33,7 @@ import com.example.rakuten.app.util.StringConstants
 import com.example.rakuten.app.util.StringConstants.SELLER_REVIEW
 
 @Composable
-fun itemProductDetail(
+fun ItemProductDetail(
     product: ProductDetail,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -177,7 +177,7 @@ fun getMockProduct(): ProductDetail {
 @Preview(showBackground = true)
 @Composable
 fun ProductDetailContentPreview() {
-    ProductDetailContent(
+    ItemProductDetail(
         product = getMockProduct(),
         onBackClick = { }
     )
