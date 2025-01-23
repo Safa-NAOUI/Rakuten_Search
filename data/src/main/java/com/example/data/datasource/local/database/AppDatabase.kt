@@ -10,24 +10,24 @@ import com.example.data.datasource.local.entity.ProductEntity
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.example.data.datasource.local.entity.ImageUrlEntity
 import com.example.data.datasource.local.entity.ProductDetailEntity
-import com.example.data.utils.ConverteSeller
+import com.example.data.utils.SellerConverter
 import com.example.data.utils.Converters
+import com.example.data.utils.ImageUrlConverter
 
 /**
  * The main database class for the application, using Room as the database framework.
  * Defines the database schema, entities, and provides DAO access.
- *
- * @property productDao Provides access to product-related database operations.
- * @property productDetailDao Provides access to product detail-related database operations.
- */
+ **/
 
 @Database(
-    entities = [ProductEntity::class, ProductDetailEntity::class],
+    entities = [ProductEntity::class, ProductDetailEntity::class, ImageUrlEntity::class],
     version = 1,
     exportSchema = false
 )
-@TypeConverters(Converters::class , ConverteSeller::class)
+
+@TypeConverters(Converters::class, SellerConverter::class, ImageUrlConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
 }
