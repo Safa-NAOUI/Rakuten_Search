@@ -1,9 +1,5 @@
 package com.example.rakuten.app.viewmodel
 
-/**
- * Created by Safa NAOUI on 19,January,2025
- */
-
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,6 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flowOn
 
@@ -28,55 +25,37 @@ class ProductViewModel @Inject constructor(
 
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
-
     private val _selectedProduct = MutableStateFlow<DataResult<ProductDetail>>(DataResult.Loading)
     val selectedProduct: StateFlow<DataResult<ProductDetail>> = _selectedProduct
-
-    private val _products = MutableStateFlow<DataResult<List<Product>>>(DataResult.Loading)
+    private val _products =
+        MutableStateFlow<DataResult<List<Product>>>(DataResult.Success(emptyList()))
     val products: StateFlow<DataResult<List<Product>>> = _products.asStateFlow()
+    private val _hasSearched = MutableStateFlow(false)
 
-    // Fetches the list of products based on the search keyword
     fun searchProducts(keyword: String) {
+        _products.value = DataResult.Loading
         viewModelScope.launch {
             try {
-
-                getListProductUseCase.searchProduct(keyword).flowOn(Dispatchers.IO)
+                getListProductUseCase.searchProduct(keyword)
+                    .flowOn(Dispatchers.IO)
+                    .catch { e ->
+                        handleError(e)
+                    }
                     .collectLatest { productList ->
                         _products.value = if (productList.isEmpty()) {
-                            DataResult.Error("No products found")
+                            DataResult.Success(emptyList())
                         } else {
                             DataResult.Success(productList)
                         }
                     }
             } catch (e: Exception) {
-                Log.e("searchProducts", "Error fetching product list", e)
-                _products.value = DataResult.Error(e.toString())
+                handleError(e)
             }
         }
     }
 
-    // Fetches product details for a given product ID
-    fun getProductDetail(productId: String) {
-        viewModelScope.launch {
-
-            _selectedProduct.value = DataResult.Loading
-
-            try {
-                getListProductUseCase.getProductDetails(productId).flowOn(Dispatchers.IO)
-                    .collectLatest { product ->
-
-                        product?.let {
-                            _selectedProduct.value = DataResult.Success(it)
-                        } ?: run {
-                            _selectedProduct.value = DataResult.Error("Product is null")
-                        }
-                    }
-            } catch (e: Exception) {
-                Log.e("getProductDetail", "Error fetching product detail", e)
-                _selectedProduct.value =
-                    DataResult.Error(e.toString())
-            }
-        }
+    private fun handleError(e: Throwable) {
+        _products.value = DataResult.Error("Erreur de réseau : ${e.localizedMessage}")
     }
 
     fun setSearchQuery(query: String) {
@@ -86,5 +65,26 @@ class ProductViewModel @Inject constructor(
     fun clearProducts() {
         _searchQuery.value = ""
         _products.value = DataResult.Success(emptyList())
+        _hasSearched.value = false
+    }
+
+    fun getProductDetail(productId: String) {
+        viewModelScope.launch {
+            _selectedProduct.value = DataResult.Loading
+
+            try {
+                getListProductUseCase.getProductDetails(productId).flowOn(Dispatchers.IO)
+                    .collectLatest { product ->
+                        product?.let {
+                            _selectedProduct.value = DataResult.Success(it)
+                        } ?: run {
+                            _selectedProduct.value = DataResult.Error("Product is null")
+                        }
+                    }
+            } catch (e: Exception) {
+                Log.e("getProductDetail", "Error fetching product detail", e)
+                _selectedProduct.value = DataResult.Error(e.toString())
+            }
+        }
     }
 }
