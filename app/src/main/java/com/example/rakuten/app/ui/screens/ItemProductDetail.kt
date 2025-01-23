@@ -29,6 +29,7 @@ import com.example.domain.model.Seller
 import com.example.rakuten.app.ui.components.CustomTopAppBar
 import com.example.rakuten.app.ui.components.DisplayCustomHtml
 import com.example.rakuten.app.ui.components.ImageCarouselWithIndicator
+import com.example.rakuten.app.ui.components.ProductPriceInfo
 import com.example.rakuten.app.ui.components.StarRating
 import com.example.rakuten.app.ui.theme.customRed
 import com.example.rakuten.app.util.StringConstants
@@ -55,7 +56,7 @@ fun ItemProductDetail(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(300.dp)
+                .height(350.dp)
                 .padding(top = 8.dp)
         ) {
 
@@ -101,20 +102,12 @@ fun ItemProductDetail(
                 horizontalAlignment = Alignment.End,
                 verticalArrangement = Arrangement.spacedBy(1.dp)
             ) {
-                product.newBestPrice?.let {
-                    Text(
-                        text = "${StringConstants.NEW} ${it}€",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 14.sp,
-                        color = customRed,
-                    )
-                }
-                product.usedBestPrice?.let {
-                    Text(
-                        text = "${StringConstants.USED} ${it}€", fontWeight = FontWeight.Normal,
-                        fontSize = 12.sp,
-                        color = Color.Gray,
-                        style = MaterialTheme.typography.bodyMedium
+                if (product.newBestPrice != null && product.usedBestPrice != null) {
+                    ProductPriceInfo(
+                        newBestPrice = product.newBestPrice!!,
+                        usedBestPrice = product.usedBestPrice!!,
+                        customRed = customRed,
+                        Alignment.End
                     )
                 }
                 product.seller.login.let {
@@ -169,7 +162,6 @@ fun ItemProductDetail(
         }
     }
 }
-
 
 // Mock Product for Preview
 fun getMockProduct(): ProductDetail {
